@@ -4,8 +4,8 @@ in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Lauren Copland.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -81,9 +81,30 @@ def draw_L(window, circle, r, c):
     and m and n are small, positive integers.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # -------------------------------------------------------------------------
+
+
+    for k in range(r+3):
+        for j in range(3):
+            circ = rg.Circle(rg.Point(circle.center.x,circle.center.y),circle.radius)
+            circ.center.x = circ.center.x + 2*circ.radius*(j+1)
+            circ.center.y = circ.center.y + 2 * circ.radius * (k + 1)
+            circ.fill_color = circle.fill_color
+
+            circ.attach_to(window)
+            window.render(0.1)
+
+    for k in range(3):
+        for j in range(c):
+            circ = rg.Circle(rg.Point(circle.center.x + (6 * circle.radius),circle.center.y + 2 * r * circle.radius),circle.radius)
+            circ.center.x = circ.center.x + 2*circ.radius*(j+1)
+            circ.center.y = circ.center.y + 2 * circ.radius * (k + 1)
+            circ.fill_color = circle.fill_color
+
+            circ.attach_to(window)
+            window.render(0.1)
 
 
 def run_test_draw_wall_on_right():
