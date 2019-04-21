@@ -147,25 +147,52 @@ def draw_wall_on_right(rectangle, n, window):
     #     The testing code is already written for you (above).
     # -------------------------------------------------------------------------
 
-    for k in range(n):
-        for j in range(n-k):
-            r = rg.Rectangle(rg.Point(rectangle.get_upper_right_corner().x,rectangle.get_upper_right_corner().y + (rectangle.get_height() * n)),rg.Point(rectangle.get_lower_left_corner().x,rectangle.get_lower_left_corner().y + rectangle.get_height()*n))
+    r = rectangle
+    width = abs(r.get_upper_left_corner().x-r.get_lower_right_corner().x)
+    height = abs(r.get_upper_left_corner().y-r.get_lower_right_corner().y)
 
-            print(rectangle.get_upper_left_corner(),rectangle.corner_1)
+    ux = rectangle.get_upper_left_corner().x
+    uy = rectangle.get_upper_left_corner().y
 
-            #CHANGE CONERS TO UPPEPER AND LOWER CORNERS
-           # #moving up
-           #  r.corner_1.y = r.corner_1.y - (j+1)*r.get_height()
-           #  r.corner_2.y -= (j+1)*r.get_height()
-           #
-           #  #moving left
-           #  r.corner_1.x -= (k+1)*r.get_width()
-           #  r.corner_2.x -= (k+1)*r.get_width()
-           #  #print(r)
-           #
-           #  r.attach_to(window)
-           #  window.render(0.1)
-# -----------------------------------------------------------------------------
+    lx = rectangle.get_lower_right_corner().x
+    ly = rectangle.get_lower_right_corner().y
+
+
+    for y in range(n):
+        for x in range(y+1):
+            r = rg.Rectangle(rg.Point(ux,uy),rg.Point(lx,ly))
+            r.attach_to(window)
+            window.render(0.1)
+
+            ux -= width
+            lx -= width
+
+        ux = rectangle.get_upper_left_corner().x
+        lx = rectangle.get_lower_right_corner().x
+
+        uy += height
+        ly += height
+
+
+
+    # for k in range(n):
+    #     for j in range(n-k):
+    #         r = rg.Rectangle(rg.Point(rectangle.get_upper_right_corner().x,rectangle.get_upper_right_corner().y + (rectangle.get_height() * n)),rg.Point(rectangle.get_lower_left_corner().x,rectangle.get_lower_left_corner().y + rectangle.get_height()*n))
+    #
+    #         print(r.corner_1,r.get_upper_right_corner())
+    #
+    #        # #moving up
+    #        #  r.corner_1.y = r.get_upper_right_corner().y - (j+1)*r.get_height()
+    #        #  r.corner_2.y = r.get_lower_left_corner().y - (j+1)*r.get_height()
+    #        #
+    #        #  #moving left
+    #        #  r.corner_1.x -= (k+1)*r.get_width()
+    #        #  r.corner_2.x -= (k+1)*r.get_width()
+    #        #  #print(r)
+    #        #
+    #        #  r.attach_to(window)
+    #        #  window.render(0.1)
+#------------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
 main()
